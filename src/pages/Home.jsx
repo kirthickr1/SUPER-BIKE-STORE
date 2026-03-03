@@ -11,7 +11,7 @@ const BIKES = [
         price: '$18,500',
         engine: '998cc',
         power: '203 HP',
-        image: 'zx-10r.jpg',
+        image: 'https://www.bossrides.in/wp-content/uploads/2023/03/kawasaki-ninja-zx10r-1-min-scaled-1.jpg',
     },
     {
         id: 2,
