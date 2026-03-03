@@ -40,6 +40,12 @@ const Checkout = () => {
 
     return (
         <div className="checkout-page">
+            <div className="page-hero-banner" style={{ marginBottom: '30px', borderRadius: '16px', overflow: 'hidden', height: '250px', position: 'relative' }}>
+                <img src="https://static.vecteezy.com/system/resources/previews/008/014/857/non_2x/superbike-illustration-design-icon-logo-art-vector.jpg" alt="Checkout Superbike" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <h1 style={{ color: 'white', margin: 0 }}>Complete Your Purchase</h1>
+                </div>
+            </div>
             <div className="checkout-container">
                 <div className="checkout-header">
                     <h1>Complete Your <span className="gradient-text-primary">{actionType}</span></h1>

@@ -9,7 +9,7 @@ const RENTAL_BIKES = [
         type: 'Adventure',
         daily: '$150',
         weekly: '$850',
-        image: 'https://images.unsplash.com/photo-1590509641772-aeaff1b50dcd?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://rustsports.com/wp-content/uploads/2020/03/P90322916_highRes_bmw-r-1250-gs-hp-09--scaled.jpg',
         features: ['Unlimited Miles', 'Insurance Included', 'Helmet & Gear']
     },
     {
@@ -18,7 +18,7 @@ const RENTAL_BIKES = [
         type: 'Adventure',
         daily: '$130',
         weekly: '$750',
-        image: 'https://images.unsplash.com/photo-1621252179022-d04b611dd1ff?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://mcn-images.bauersecure.com/wp-images/225328/2024-triumph-tiger-900-rally-pro-review-01.jpg',
         features: ['GPS Equipped', 'Roadside Assistance', 'Helmet & Gear']
     },
     {
@@ -36,7 +36,7 @@ const RENTAL_BIKES = [
         type: 'Sport',
         daily: '$120',
         weekly: '$700',
-        image: 'https://images.unsplash.com/photo-1568453472093-4a180eb6f1e1?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://www.team-bhp.com/forum/attachments/superbikes-imports/2527817d1699356311-2024-honda-cbr600rr-unveiled-458373_24ym_cbr600rr.jpg',
         features: ['Track Prep Available', 'Insurance Included', 'Helmet & Gear']
     }
 ];
@@ -52,7 +52,7 @@ const Rentals = () => {
             </div>
 
             <div className="banner-container" style={{ width: '100%', maxWidth: '1200px', margin: '0 auto 40px auto', borderRadius: '16px', overflow: 'hidden', padding: '0 5%' }}>
-                <img src="/rental-banner.png" alt="Rental Motorcycles Background" style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: '16px' }} />
+                <img src="https://www.morrismotorcycles.com.au/wp-content/uploads/2023/01/Morris-Motorcycle-Shop-1024x768.jpg" alt="Rental Motorcycles Background" style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: '16px' }} />
             </div>
 
             <div className="rentals-container">

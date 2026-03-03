@@ -29,7 +29,7 @@ const BIKES = [
         price: '$26,900',
         engine: '998cc',
         power: '200 HP',
-        image: 'https://images.unsplash.com/photo-1629343719463-bd4e7fae8da6?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://tse3.mm.bing.net/th/id/OIP.Z19DZ8d76-V43klrdjUg3wHaE8?rs=1&pid=ImgDetMain&o=7&rm=3',
     },
     {
         id: 4,
@@ -38,7 +38,7 @@ const BIKES = [
         price: '$20,500',
         engine: '999cc',
         power: '205 HP',
-        image: 'https://images.unsplash.com/photo-1614144490805-472097e8853b?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://th.bing.com/th/id/OIP.qnFE6GakUjQHtk27FM9nkAHaE7?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3',
     },
 ];
 
@@ -61,14 +61,14 @@ const Home = () => {
                         <button className="btn-primary">
                             View Inventory <ArrowRight size={20} style={{ marginLeft: '10px', verticalAlign: 'middle' }} />
                         </button>
-                        <button className="btn-outline">Learn More</button>
+                        <button className="btn-outline" onClick={() => navigate('/more')}>Learn More</button>
                     </div>
                 </div>
                 <div className="hero-image-wrapper">
                     <div className="hero-gradient-overlay"></div>
                     {/* using a placeholder image for hero but styled */}
                     <img
-                        src="/bmw-hero.png"
+                        src="https://i.pinimg.com/736x/86/d6/e6/86d6e65b230b3526c23266a78abe72d7.jpg"
                         alt="BMW Superbike Hero"
                         className="hero-image"
                     />
@@ -104,7 +104,7 @@ const Home = () => {
                 </div>
 
                 <div className="banner-container" style={{ width: '100%', marginBottom: '40px', borderRadius: '16px', overflow: 'hidden' }}>
-                    <img src="/selling-banner.png" alt="Featured Superbikes Showroom" style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} />
+                    <img src="https://img.freepik.com/premium-photo/futuristic-superbike-showroom_968517-116616.jpg?w=1380" alt="Featured Superbikes Showroom" style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} />
                 </div>
 
                 <div className="bike-grid">

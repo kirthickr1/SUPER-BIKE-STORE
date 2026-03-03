@@ -27,6 +27,14 @@ const Service = () => {
 
     return (
         <div className="service-page">
+            <div className="page-hero-banner" style={{ marginBottom: '40px', borderRadius: '16px', overflow: 'hidden', height: '300px', position: 'relative' }}>
+                <img src="https://kawasaki-hamburg.de/media/kawasaki-hamburg/Wekstatt_410px.jpg" alt="Superbike Mechanic" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8))', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <h1 style={{ color: 'white', marginBottom: '10px' }}>Service Center</h1>
+                    <p style={{ color: '#aaa', fontSize: '1.2rem', margin: 0 }}>Expert maintenance for elite machines.</p>
+                </div>
+            </div>
+
             <div className="service-container">
 
                 <div className="service-content">

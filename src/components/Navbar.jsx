@@ -18,12 +18,12 @@ const Navbar = () => {
             <div className="nav-container">
                 <Link to="/" className="nav-logo">
                     <img src="/logo.png" alt="Velocity Logo" className="logo-img" style={{ height: '32px', width: 'auto', borderRadius: '4px' }} />
-                    <span className="logo-text">VELOCITY</span>
+                    <span className="logo-text">Elite SuperBike Garage</span>
                 </Link>
 
                 {/* Desktop Menu */}
                 <div className="nav-links">
-                    <Link to="/" className={`nav-link ${isActive('/')}`}>Buy</Link>
+                    <Link to="/home" className={`nav-link ${isActive('/home')}`}>Buy</Link>
                     <Link to="/rentals" className={`nav-link ${isActive('/rentals')}`}>Rent</Link>
                     <Link to="/service" className={`nav-link ${isActive('/service')}`}>Service</Link>
                 </div>
@@ -37,7 +37,7 @@ const Navbar = () => {
             {/* Mobile Menu */}
             {isOpen && (
                 <div className="mobile-menu">
-                    <Link to="/" className="mobile-link" onClick={toggleMenu}>Buy</Link>
+                    <Link to="/home" className="mobile-link" onClick={toggleMenu}>Buy</Link>
                     <Link to="/rentals" className="mobile-link" onClick={toggleMenu}>Rent</Link>
                     <Link to="/service" className="mobile-link" onClick={toggleMenu}>Service</Link>
                 </div>

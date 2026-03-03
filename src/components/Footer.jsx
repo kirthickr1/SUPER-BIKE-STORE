@@ -5,20 +5,20 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-content">
                 <div className="footer-brand">
-                    <h2 className="logo-text">VELOCITY</h2>
+                    <h2 className="logo-text">Elite SuperBike Garage</h2>
                     <p className="footer-tagline">Experience the ultimate ride. Premium superbikes for sale, rent, and specialized service.</p>
                 </div>
                 <div className="footer-links">
                     <div className="link-group">
                         <h3>Explore</h3>
-                        <a href="/">Buy</a>
+                        <a href="/home">Buy</a>
                         <a href="/rentals">Rent</a>
                         <a href="/service">Service</a>
                     </div>
                     <div className="link-group">
                         <h3>Contact</h3>
-                        <p>1-800-VELOCITY</p>
-                        <p>info@velocitybikes.com</p>
+                        <p>+91 8667867314</p>
+                        <p>kirthick866@gmail.com</p>
                     </div>
                 </div>
             </div>
