@@ -6,6 +6,7 @@ import { CheckCircle } from 'lucide-react';
 const Checkout = () => {
     const location = useLocation();
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [actionType, setActionType] = useState('Purchase');
 
     // Check if we navigated here with state indicating a rental intent
@@ -15,6 +16,8 @@ const Checkout = () => {
         }
     }, [location]);
 
+    const bike = location.state?.bike;
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -22,20 +25,67 @@ const Checkout = () => {
         phone: '',
         address: '',
         city: '',
-        zipCode: ''
+        zipCode: '',
+        drivingLicense: '',
+        aadharCard: '',
+        passportPhoto: null
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        const { name, value, type, files } = e.target;
+        setFormData(prev => ({ 
+            ...prev, 
+            [name]: type === 'file' ? files[0] : value 
+        }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Simulate API call and processing
-        setTimeout(() => {
-            setIsSubmitted(true);
-        }, 800);
+        setIsSubmitting(true);
+        
+        try {
+            const payload = {
+                _subject: `New ${actionType} Request from ${formData.firstName} ${formData.lastName}`,
+                name: `${formData.firstName} ${formData.lastName}`,
+                email: formData.email,
+                phone: formData.phone,
+                address: `${formData.address}, ${formData.city}, ${formData.zipCode}`,
+                actionType: actionType,
+            };
+
+            if (actionType === 'Rental') {
+                payload.drivingLicense = formData.drivingLicense;
+                payload.aadharCard = formData.aadharCard;
+                payload.passportPhoto = formData.passportPhoto ? formData.passportPhoto.name : 'Not provided';
+                payload.refundableDeposit = '₹5,000';
+            }
+
+            if (bike) {
+                payload.bikeName = bike.name;
+                payload.bikeBrand = bike.brand || bike.type;
+                payload.bikePriceOrRate = actionType === 'Rental' ? `Daily: ${bike.daily} / Weekly: ${bike.weekly}` : bike.price;
+            }
+
+            const response = await fetch("https://formsubmit.co/ajax/kirthick866@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                setIsSubmitted(true);
+            } else {
+                alert("Failed to send request. Please try again.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("An error occurred. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -53,6 +103,28 @@ const Checkout = () => {
                         Please provide your details below. Our team will contact you shortly to finalize the transaction.
                     </p>
                 </div>
+
+                {bike && (
+                    <div className="bike-summary glass-panel" style={{ marginBottom: '30px', display: 'flex', gap: '20px', alignItems: 'center', padding: '20px' }}>
+                        <img src={bike.image} alt={bike.name} style={{ width: '150px', height: '100px', objectFit: 'cover', borderRadius: '8px' }} />
+                        <div>
+                            <h3 style={{ margin: '0 0 10px 0' }}>{bike.name} {bike.brand ? `(${bike.brand})` : ''}</h3>
+                            <p style={{ margin: '0 0 5px 0', color: 'var(--primary)', fontWeight: 'bold' }}>
+                                {actionType === 'Rental'
+                                    ? `Daily: ${bike.daily} | Weekly: ${bike.weekly}`
+                                    : `Price: ${bike.price}`
+                                }
+                            </p>
+                            {bike.engine && <p style={{ margin: '5px 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Engine: {bike.engine} • Power: {bike.power}</p>}
+                            {bike.type && <p style={{ margin: '5px 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Type: {bike.type}</p>}
+                            {bike.features && (
+                                <p style={{ margin: '5px 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                                    Features: {bike.features.join(', ')}
+                                </p>
+                            )}
+                        </div>
+                    </div>
+                )}
 
                 <div className="checkout-form-wrapper glass-panel">
                     {isSubmitted ? (
@@ -175,8 +247,69 @@ const Checkout = () => {
                                 </div>
                             </div>
 
-                            <button type="submit" className="btn-primary form-submit">
-                                Submit Details
+                            {actionType === 'Rental' && (
+                                <>
+                                    <h2 style={{ marginTop: '20px' }}>Rental Documents</h2>
+                                    <div className="form-row">
+                                        <div className="form-group col-half">
+                                            <label htmlFor="drivingLicense">Driving License Number</label>
+                                            <input
+                                                type="text"
+                                                id="drivingLicense"
+                                                name="drivingLicense"
+                                                required
+                                                className="form-control"
+                                                placeholder="DL-XXXX-XXXXXXX"
+                                                value={formData.drivingLicense}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                        <div className="form-group col-half">
+                                            <label htmlFor="aadharCard">Aadhar Card Number</label>
+                                            <input
+                                                type="text"
+                                                id="aadharCard"
+                                                name="aadharCard"
+                                                required
+                                                className="form-control"
+                                                placeholder="XXXX XXXX XXXX"
+                                                value={formData.aadharCard}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="form-row">
+                                        <div className="form-group col-half">
+                                            <label htmlFor="passportPhoto">Passport Size Photo</label>
+                                            <input
+                                                type="file"
+                                                id="passportPhoto"
+                                                name="passportPhoto"
+                                                accept="image/*"
+                                                required
+                                                className="form-control"
+                                                onChange={handleChange}
+                                                style={{ padding: '8px' }}
+                                            />
+                                        </div>
+                                        <div className="form-group col-half">
+                                            <label htmlFor="refundableAmount">Refundable Deposit</label>
+                                            <input
+                                                type="text"
+                                                id="refundableAmount"
+                                                name="refundableAmount"
+                                                readOnly
+                                                className="form-control"
+                                                value="₹5,000 (Payable at pickup)"
+                                                style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', color: 'var(--text-secondary)' }}
+                                            />
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+
+                            <button type="submit" className="btn-primary form-submit" disabled={isSubmitting}>
+                                {isSubmitting ? 'Submitting...' : 'Submit Details'}
                             </button>
                         </form>
                     )}

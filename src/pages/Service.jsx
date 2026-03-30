@@ -4,6 +4,7 @@ import { Wrench, CheckCircle } from 'lucide-react';
 
 const Service = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -17,12 +18,38 @@ const Service = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Simulate API call
-        setTimeout(() => {
-            setIsSubmitted(true);
-        }, 800);
+        setIsSubmitting(true);
+        
+        try {
+            const response = await fetch("https://formsubmit.co/ajax/kirthick866@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: `New Service Request for ${formData.bikeModel}`,
+                    name: formData.name,
+                    phone: formData.phone,
+                    bikeModel: formData.bikeModel,
+                    serviceType: formData.serviceType,
+                    preferredDate: formData.date
+                })
+            });
+
+            if (response.ok) {
+                setIsSubmitted(true);
+            } else {
+                alert("Failed to send request. Please try again.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("An error occurred. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -148,8 +175,8 @@ const Service = () => {
                                     </div>
                                 </div>
 
-                                <button type="submit" className="btn-primary form-submit">
-                                    Request Appointment
+                                <button type="submit" className="btn-primary form-submit" disabled={isSubmitting}>
+                                    {isSubmitting ? 'Requesting...' : 'Request Appointment'}
                                 </button>
                             </form>
                         )}

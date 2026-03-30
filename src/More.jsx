@@ -68,7 +68,7 @@ const More = () => {
             <div style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '10px', margin: '1.5rem 0' }}>
                 <p>📞 <strong>Contact:</strong> 8667867314 </p>
                 <p>📍 <strong>Location:</strong> Kunnathur </p>
-                <p>🕒 <strong>Working Hours:</strong> Mon – Sat | 9:00 AM – 8:00 PM</p>
+                <p>🕒 <strong>Working Hours:</strong> Mon – Sat | 8:00 AM – 10:00 PM</p>
             </div>
 
             <h3 style={{ marginTop: '2rem', textAlign: 'center', color: '#ffd700' }}>Unleash the Beast. Ride Beyond Limits. 🏍️🔥</h3>

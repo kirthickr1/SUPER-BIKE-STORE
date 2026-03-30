@@ -90,11 +90,15 @@ button {
 .gradient-text {
   background: linear-gradient(to right, #fff, var(--text-secondary));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .gradient-text-primary {
   background: linear-gradient(135deg, var(--primary), #ff6b6b);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
